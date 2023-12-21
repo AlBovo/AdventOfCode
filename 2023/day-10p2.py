@@ -28,7 +28,7 @@ visited = []
 while pos not in visited:
     visited.append(pos)
     x, y = pos
-    p[x][y] = '+'
+    p[x][y] = m[x][y]
     
     if m[x-1][y] in ups and m[x][y] in up and (x-1, y) not in visited: # up
         pos = (x-1, y)
@@ -39,8 +39,4 @@ while pos not in visited:
     elif m[x][y-1] in lefts and m[x][y] in left and (x, y-1) not in visited: # left
         pos = (x, y-1)
          
-# for i in range(len(p)):
-#     for e in range(len(p[0])):
-#         print(p[i][e], end="")
-#     print()
-# TODO: Finish this
+print("\n".join(["".join(i) for i in p])) # TODO: finish lol
