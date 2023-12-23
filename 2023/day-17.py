@@ -18,8 +18,10 @@ r[0][0][0] = 0
 
 while not q.empty():
     p = q.get()
-    
     x, y, z, direction = p[1]
+
+    if r[x][y][z] != p[0]:
+        continue
     if z >= 2:
         if direction in [0, 2]:
             if y > 0 and r[x][y-1][0] > r[x][y][z] + t[x][y]:
@@ -48,4 +50,7 @@ while not q.empty():
         if x <  len(t) - 1 and r[x+1][y][0 if direction != 2 else z+1] > r[x][y][z] + t[x][y]:
             r[x+1][y][0 if direction != 2 else z+1] = r[x][y][z] + t[x][y]
             q.put((r[x+1][y][0 if direction != 2 else z+1], (x+1, y, 0 if direction != 2 else z+1, 2)))
-print(r[len(t)-1][len(t[0])-1]) # TODO: finish lol
+f = int(1e9)
+for i in r[len(t)-1][len(t[0])-1]:
+    f = min(r[len(t)-1][len(t[0])-1][i], f)
+print(f + t[0][0]) # TODO: finish lol
