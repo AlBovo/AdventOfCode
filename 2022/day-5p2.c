@@ -80,9 +80,11 @@ int main(){
         while(!feof(fp)){
             int a, b, c;
             fscanf(fp, "move %d from %d to %d\n", &a, &b, &c);
-            for(int i=0; i<a; i++){
-                push(s[c-1], pop(s[b-1]));
-            }
+            char temp[a];
+            for(int i=0; i<a; i++)
+                temp[i] = pop(s[b-1]);
+            for(int i=a-1; i>=0; i--)
+                push(s[c-1], temp[i]);
         }
     }
 
