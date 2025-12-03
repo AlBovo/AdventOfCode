@@ -9,6 +9,7 @@ const isInvalid = (id) => {
     }
     return strId.substring(0, strId.length / 2) === strId.substring(strId.length / 2);
 }
+
 let total = 0;
 fs.readFile(filePath, {encoding: 'ascii'}, function(err,data){
     if (!err) {
@@ -22,7 +23,6 @@ fs.readFile(filePath, {encoding: 'ascii'}, function(err,data){
                 continue;
             }
             else if (first.toString().length !== second.toString().length) { // TODO: optimize this logic
-                assert(delta <= 1000);
                 for (let id = first; id <= second; id++) {
                     if (isInvalid(id)) {
                         total += id;
@@ -30,7 +30,6 @@ fs.readFile(filePath, {encoding: 'ascii'}, function(err,data){
                 }
             }
             else {
-                assert(delta <= 1000);
                 for (let id = first; id <= second; id++) { // TODO: optimize this logic
                     if (isInvalid(id)) {
                         total += id;
